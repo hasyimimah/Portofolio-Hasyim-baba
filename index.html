@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portofolio Hasyim Baba | Web Developer</title>
+  <meta name="description" content="Portofolio profesional Hasyim Baba, Web Developer dengan tema dark monochrome modern, menampilkan profil, keahlian, layanan, dan project landing page." />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+    :root{
+      --bg:#040404;
+      --bg-soft:#0c0c0c;
+      --card:rgba(255,255,255,0.05);
+      --card-strong:rgba(255,255,255,0.08);
+      --line:rgba(255,255,255,0.12);
+      --text:#f5f5f5;
+      --muted:#a7a7a7;
+      --white:#ffffff;
+      --shadow:0 20px 60px rgba(0,0,0,0.45);
+      --radius:24px;
+      --radius-sm:16px;
+      --max:1180px;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,0.08), transparent 20%),
+        radial-gradient(circle at left center, rgba(255,255,255,0.04), transparent 18%),
+        linear-gradient(180deg, #030303 0%, #080808 50%, #040404 100%);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size:40px 40px;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,0.28), transparent 85%);
+      z-index:0;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    img{ max-width:100%; display:block; }
+
+    .container{
+      width:min(100% - 32px, var(--max));
+      margin-inline:auto;
+      position:relative;
+      z-index:1;
+    }
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(16px);
+      background:rgba(4,4,4,0.72);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+    }
+
+    .header-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      min-height:78px;
+      gap:20px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:800;
+      letter-spacing:0.2px;
+    }
+
+    .brand-mark{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(145deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04));
+      border:1px solid rgba(255,255,255,0.14);
+      box-shadow:var(--shadow);
+      font-size:14px;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .nav a{
+      color:var(--muted);
+      padding:12px 16px;
+      border-radius:999px;
+      transition:0.3s ease;
+      font-size:14px;
+      font-weight:500;
+    }
+
+    .nav a:hover{
+      color:var(--white);
+      background:rgba(255,255,255,0.06);
+    }
+
+    .menu-toggle{
+      display:none;
+      width:46px;
+      height:46px;
+      border:none;
+      border-radius:14px;
+      background:rgba(255,255,255,0.06);
+      color:var(--white);
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero{
+      padding:70px 0 38px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:40px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      color:#d6d6d6;
+      font-size:13px;
+      margin-bottom:20px;
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--white);
+      box-shadow:0 0 20px rgba(255,255,255,0.7);
+    }
+
+    .hero h1{
+      font-size:clamp(2.4rem, 5vw, 5rem);
+      line-height:0.98;
+      letter-spacing:-0.04em;
+      margin-bottom:18px;
+    }
+
+    .hero h1 span{
+      color:#bdbdbd;
+    }
+
+    .hero p{
+      font-size:1.02rem;
+      color:var(--muted);
+      max-width:680px;
+      line-height:1.8;
+      margin-bottom:28px;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-bottom:28px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:15px 22px;
+      border-radius:16px;
+      font-weight:700;
+      transition:0.3s ease;
+      cursor:pointer;
+      border:1px solid transparent;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg, #ffffff, #cfcfcf);
+      color:#000;
+      box-shadow:0 18px 40px rgba(255,255,255,0.14);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      box-shadow:0 22px 46px rgba(255,255,255,0.18);
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,0.05);
+      color:var(--white);
+      border-color:rgba(255,255,255,0.1);
+    }
+
+    .btn-secondary:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,0.08);
+    }
+
+    .hero-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .chip{
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      color:#d2d2d2;
+      font-size:13px;
+    }
+
+    .profile-shell{
+      position:relative;
+      padding:22px;
+      border-radius:32px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03));
+      border:1px solid rgba(255,255,255,0.12);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      isolation:isolate;
+    }
+
+    .profile-shell::before{
+      content:"";
+      position:absolute;
+      inset:auto -60px -60px auto;
+      width:180px;
+      height:180px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,255,255,0.2), transparent 70%);
+      z-index:-1;
+    }
+
+    .profile-ring{
+      position:absolute;
+      inset:18px;
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:28px;
+      pointer-events:none;
+    }
+
+    .profile-image{
+      position:relative;
+      aspect-ratio:1/1.15;
+      border-radius:26px;
+      overflow:hidden;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02)),
+        #101010;
+      border:1px solid rgba(255,255,255,0.1);
+    }
+
+    .profile-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:grayscale(1) contrast(1.05) brightness(0.88);
+      transform:scale(1.03);
+    }
+
+    .profile-badge{
+      position:absolute;
+      left:20px;
+      right:20px;
+      bottom:20px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      padding:16px 18px;
+      border-radius:18px;
+      background:rgba(0,0,0,0.55);
+      border:1px solid rgba(255,255,255,0.12);
+      backdrop-filter:blur(10px);
+    }
+
+    .profile-badge h3{
+      font-size:1.05rem;
+      margin-bottom:4px;
+    }
+
+    .profile-badge p{
+      color:#c2c2c2;
+      font-size:0.92rem;
+      line-height:1.4;
+    }
+
+    .status-dot{
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:#fff;
+      box-shadow:0 0 18px rgba(255,255,255,0.9);
+      flex:0 0 auto;
+    }
+
+    .section{
+      padding:38px 0;
+    }
+
+    .section-head{
+      margin-bottom:24px;
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .section-kicker{
+      color:#bdbdbd;
+      text-transform:uppercase;
+      letter-spacing:0.16em;
+      font-size:12px;
+      margin-bottom:10px;
+    }
+
+    .section h2{
+      font-size:clamp(1.8rem, 3vw, 3rem);
+      letter-spacing:-0.03em;
+    }
+
+    .section-subtitle{
+      max-width:680px;
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    .about-grid,
+    .contact-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border:1px solid rgba(255,255,255,0.09);
+      border-radius:var(--radius);
+      padding:26px;
+      box-shadow:var(--shadow);
+    }
+
+    .about-text{
+      color:var(--muted);
+      line-height:1.9;
+      margin-bottom:22px;
+    }
+
+    .info-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:14px;
+    }
+
+    .info-item{
+      padding:16px;
+      border-radius:18px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .info-item span{
+      display:block;
+      font-size:12px;
+      color:#a9a9a9;
+      margin-bottom:7px;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+    }
+
+    .info-item strong{
+      font-size:0.97rem;
+      line-height:1.5;
+      word-break:break-word;
+    }
+
+    .highlight-list{
+      display:grid;
+      gap:14px;
+    }
+
+    .highlight-item{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      padding:18px;
+      border-radius:20px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .icon-box{
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.08);
+      flex:0 0 auto;
+    }
+
+    .highlight-item h3{
+      margin-bottom:6px;
+      font-size:1rem;
+    }
+
+    .highlight-item p{
+      color:var(--muted);
+      line-height:1.7;
+      font-size:0.95rem;
+    }
+
+    .skills-grid,
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:18px;
+    }
+
+    .skill-card,
+    .service-card{
+      padding:22px;
+      border-radius:22px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border:1px solid rgba(255,255,255,0.09);
+      transition:0.35s ease;
+      box-shadow:var(--shadow);
+    }
+
+    .skill-card:hover,
+    .service-card:hover,
+    .project-card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(255,255,255,0.18);
+      background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+    }
+
+    .skill-card h3,
+    .service-card h3{
+      margin:16px 0 10px;
+      font-size:1.05rem;
+    }
+
+    .skill-card p,
+    .service-card p{
+      color:var(--muted);
+      line-height:1.75;
+      font-size:0.95rem;
+    }
+
+    .mono-icon{
+      width:52px;
+      height:52px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .portfolio-wrap{
+      display:grid;
+      gap:20px;
+    }
+
+    .project-card{
+      display:grid;
+      grid-template-columns:1.05fr 0.95fr;
+      gap:0;
+      overflow:hidden;
+      border-radius:30px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border:1px solid rgba(255,255,255,0.1);
+      box-shadow:var(--shadow);
+      transition:0.35s ease;
+    }
+
+    .project-preview{
+      min-height:340px;
+      position:relative;
+      padding:26px;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.12), transparent 34%),
+        linear-gradient(135deg, #121212, #050505 65%);
+      border-right:1px solid rgba(255,255,255,0.08);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .browser{
+      width:min(100%, 500px);
+      background:#0a0a0a;
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 35px 70px rgba(0,0,0,0.45);
+    }
+
+    .browser-top{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:14px 16px;
+      background:rgba(255,255,255,0.04);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .browser-top i{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:#f1f1f1;
+      opacity:0.75;
+      display:block;
+    }
+
+    .browser-body{
+      padding:28px;
+      display:grid;
+      gap:18px;
+    }
+
+    .mock-tag{
+      width:max-content;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.07);
+      color:#d9d9d9;
+      font-size:12px;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .mock-title{
+      font-size:clamp(1.8rem, 4vw, 2.6rem);
+      line-height:1;
+      letter-spacing:-0.04em;
+    }
+
+    .mock-lines{
+      display:grid;
+      gap:10px;
+    }
+
+    .mock-lines span{
+      display:block;
+      height:10px;
+      border-radius:999px;
+      background:linear-gradient(90deg, rgba(255,255,255,0.18), rgba(255,255,255,0.05));
+    }
+
+    .mock-lines span:nth-child(1){ width:88%; }
+    .mock-lines span:nth-child(2){ width:74%; }
+    .mock-lines span:nth-child(3){ width:56%; }
+
+    .mock-buttons{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .mock-buttons b,
+    .mock-buttons em{
+      padding:11px 14px;
+      border-radius:14px;
+      font-style:normal;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .mock-buttons b{
+      color:#000;
+      background:#fff;
+    }
+
+    .mock-buttons em{
+      color:#ddd;
+      border:1px solid rgba(255,255,255,0.1);
+      background:rgba(255,255,255,0.04);
+    }
+
+    .project-content{
+      padding:28px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .project-label{
+      font-size:12px;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      color:#bdbdbd;
+      margin-bottom:12px;
+    }
+
+    .project-content h3{
+      font-size:1.6rem;
+      margin-bottom:12px;
+      letter-spacing:-0.03em;
+    }
+
+    .project-content p{
+      color:var(--muted);
+      line-height:1.85;
+      margin-bottom:18px;
+    }
+
+    .tag-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:22px;
+    }
+
+    .tag{
+      padding:10px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      font-size:13px;
+      color:#d6d6d6;
+    }
+
+    .project-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .contact-info{
+      display:grid;
+      gap:14px;
+    }
+
+    .contact-item{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:16px 18px;
+      border-radius:18px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .contact-item small{
+      display:block;
+      color:#a7a7a7;
+      margin-bottom:5px;
+    }
+
+    .contact-item strong{
+      font-size:0.98rem;
+      word-break:break-word;
+    }
+
+    .mini-btn{
+      padding:10px 12px;
+      border:none;
+      border-radius:12px;
+      background:rgba(255,255,255,0.08);
+      color:#fff;
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,0.08);
+      font-weight:600;
+      transition:0.25s ease;
+      white-space:nowrap;
+    }
+
+    .mini-btn:hover{
+      background:rgba(255,255,255,0.12);
+    }
+
+    .contact-form{
+      display:grid;
+      gap:14px;
+    }
+
+    .field{
+      display:grid;
+      gap:8px;
+    }
+
+    .field label{
+      color:#d2d2d2;
+      font-size:14px;
+    }
+
+    .field input,
+    .field textarea{
+      width:100%;
+      border:none;
+      outline:none;
+      resize:none;
+      color:#fff;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:16px;
+      padding:16px 18px;
+      font:inherit;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder{
+      color:#8f8f8f;
+    }
+
+    .contact-note{
+      color:var(--muted);
+      font-size:0.93rem;
+      line-height:1.7;
+    }
+
+    footer{
+      padding:26px 0 42px;
+      color:#9f9f9f;
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+      padding-top:18px;
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(24px);
+      transition:opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .reveal.visible{
+      opacity:1;
+      transform:none;
+    }
+
+    .toast{
+      position:fixed;
+      bottom:22px;
+      left:50%;
+      transform:translateX(-50%) translateY(20px);
+      background:#fff;
+      color:#000;
+      padding:12px 16px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:14px;
+      opacity:0;
+      pointer-events:none;
+      transition:0.3s ease;
+      z-index:100;
+      box-shadow:0 20px 50px rgba(0,0,0,0.35);
+    }
+
+    .toast.show{
+      opacity:1;
+      transform:translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 1024px){
+      .hero-grid,
+      .about-grid,
+      .contact-grid,
+      .project-card{
+        grid-template-columns:1fr;
+      }
+
+      .skills-grid,
+      .services-grid{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+      }
+
+      .project-preview{
+        border-right:none;
+        border-bottom:1px solid rgba(255,255,255,0.08);
+      }
+    }
+
+    @media (max-width: 760px){
+      .menu-toggle{
+        display:grid;
+        place-items:center;
+      }
+
+      .nav{
+        position:absolute;
+        top:calc(100% + 12px);
+        left:16px;
+        right:16px;
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+        padding:12px;
+        background:rgba(8,8,8,0.95);
+        border:1px solid rgba(255,255,255,0.08);
+        border-radius:20px;
+        box-shadow:var(--shadow);
+      }
+
+      .nav.open{
+        display:flex;
+      }
+
+      .nav a{
+        padding:14px 16px;
+        border-radius:14px;
+      }
+
+      .hero{
+        padding-top:42px;
+      }
+
+      .info-grid,
+      .skills-grid,
+      .services-grid{
+        grid-template-columns:1fr;
+      }
+
+      .card,
+      .project-content,
+      .project-preview,
+      .skill-card,
+      .service-card{
+        padding:22px;
+      }
+
+      .profile-badge{
+        padding:14px 15px;
+      }
+
+      .contact-item{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+
+      .footer-inner{
+        flex-direction:column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#home" class="brand" aria-label="Hasyim Baba">
+        <span class="brand-mark">HB</span>
+        <span>Hasyim Baba</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 7H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M4 12H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M4 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <nav class="nav" id="navMenu">
+        <a href="#tentang">Tentang</a>
+        <a href="#skill">Skill</a>
+        <a href="#jasa">Jasa</a>
+        <a href="#portofolio">Portofolio</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">Portofolio Profesional • Dark Monochrome</div>
+          <h1>Hasyim Baba <span>— Web Developer</span></h1>
+          <p>
+            Saya adalah web developer dengan fokus pada pembuatan website modern, profesional, responsif, dan nyaman digunakan. Portofolio ini menampilkan profil, layanan, serta hasil kerja yang pernah saya kerjakan.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#kontak">Hubungi Saya</a>
+            <a class="btn btn-secondary" href="https://hasyimimah.github.io/warung-bahagia/" target="_blank" rel="noopener">Lihat Project</a>
+          </div>
+
+          <div class="hero-meta">
+            <span class="chip">Universitas Pasifik Morotai</span>
+            <span class="chip">Laki-laki</span>
+            <span class="chip">Responsive Design</span>
+            <span class="chip">Landing Page & Website</span>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="profile-shell">
+            <div class="profile-ring"></div>
+            <div class="profile-image">
+              <img src="https://i.pravatar.cc/800?img=12" alt="Foto profil Hasyim Baba" />
+              <div class="profile-badge">
+                <div>
+                  <h3>Hasyim Baba</h3>
+                  <p>Web Developer • Siap membantu kebutuhan website profesional Anda</p>
+                </div>
+                <span class="status-dot" aria-hidden="true"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tentang">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">Tentang Saya</div>
+            <h2>Profil singkat yang profesional</h2>
+          </div>
+          <p class="section-subtitle">
+            Informasi personal dan pendekatan kerja saya dalam membangun website yang bersih, modern, dan berfokus pada pengalaman pengguna.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="card reveal">
+            <p class="about-text">
+              Saya, <strong style="color:#fff;">Hasyim Baba</strong>, berfokus pada pengembangan website dengan tampilan modern dan struktur yang rapi. Saya menyukai desain yang elegan, performa yang baik, dan antarmuka yang mudah dipahami oleh pengguna.
+            </p>
+
+            <div class="info-grid">
+              <div class="info-item">
+                <span>Nama</span>
+                <strong>Hasyim Baba</strong>
+              </div>
+              <div class="info-item">
+                <span>Pekerjaan</span>
+                <strong>Web Developer</strong>
+              </div>
+              <div class="info-item">
+                <span>Pendidikan</span>
+                <strong>Universitas Pasifik Morotai</strong>
+              </div>
+              <div class="info-item">
+                <span>Jenis Kelamin</span>
+                <strong>Laki-laki</strong>
+              </div>
+              <div class="info-item">
+                <span>No. HP</span>
+                <strong>081226132798</strong>
+              </div>
+              <div class="info-item">
+                <span>Email</span>
+                <strong>hasyimimah4@gmail.com</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <div class="highlight-list">
+              <div class="highlight-item">
+                <div class="icon-box">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 6.5C4 5.67 4.67 5 5.5 5H18.5C19.33 5 20 5.67 20 6.5V17.5C20 18.33 19.33 19 18.5 19H5.5C4.67 19 4 18.33 4 17.5V6.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M8 9H16" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M8 13H13" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3>Desain Bersih & Elegan</h3>
+                  <p>Tampilan website dibuat dengan gaya modern, rapi, dan profesional sesuai kebutuhan brand atau bisnis.</p>
+                </div>
+              </div>
+
+              <div class="highlight-item">
+                <div class="icon-box">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <rect x="4" y="5" width="16" height="14" rx="2.5" stroke="white" stroke-width="1.5"/>
+                    <path d="M9 19V21" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M15 19V21" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M8 9L10.5 12L8 15" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M13 15H16" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3>Responsive & Nyaman Dipakai</h3>
+                  <p>Website dioptimalkan untuk desktop maupun mobile agar tetap enak dibuka di berbagai ukuran layar.</p>
+                </div>
+              </div>
+
+              <div class="highlight-item">
+                <div class="icon-box">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 4L18 7.5V16.5L12 20L6 16.5V7.5L12 4Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M9.5 12L11.2 13.7L14.8 10.2" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3>Siap untuk Website Profesional</h3>
+                  <p>Cocok untuk landing page, company profile, personal branding, dan kebutuhan website modern lainnya.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skill">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">Keahlian</div>
+            <h2>Skill utama saya</h2>
+          </div>
+          <p class="section-subtitle">
+            Fokus pada pembuatan tampilan website yang cepat, modern, dan profesional dengan pengalaman pengguna yang baik.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-card reveal">
+            <div class="mono-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M8 7L4 12L8 17" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 7L20 12L16 17" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Front-End Development</h3>
+            <p>Membangun tampilan website yang rapi, responsif, dan interaktif menggunakan HTML, CSS, dan JavaScript.</p>
+          </div>
+
+          <div class="skill-card reveal">
+            <div class="mono-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="4" y="5" width="16" height="14" rx="2.5" stroke="white" stroke-width="1.6"/>
+                <path d="M8 9H16" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M8 13H14" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Landing Page</h3>
+            <p>Merancang landing page yang fokus pada presentasi produk, jasa, promosi, dan konversi yang lebih baik.</p>
+          </div>
+
+          <div class="skill-card reveal">
+            <div class="mono-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 12C4 8.23 4 6.34 5.17 5.17C6.34 4 8.23 4 12 4C15.77 4 17.66 4 18.83 5.17C20 6.34 20 8.23 20 12C20 15.77 20 17.66 18.83 18.83C17.66 20 15.77 20 12 20C8.23 20 6.34 20 5.17 18.83C4 17.66 4 15.77 4 12Z" stroke="white" stroke-width="1.6"/>
+                <path d="M8 8H12V12H8V8Z" stroke="white" stroke-width="1.6"/>
+                <path d="M12 12H16V16H12V12Z" stroke="white" stroke-width="1.6"/>
+              </svg>
+            </div>
+            <h3>UI Layout</h3>
+            <p>Menyusun layout yang bersih, seimbang, dan mudah dinavigasi untuk meningkatkan kenyamanan pengguna.</p>
+          </div>
+
+          <div class="skill-card reveal">
+            <div class="mono-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 18L18 6" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M8 6H18V16" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Optimasi Visual</h3>
+            <p>Mengutamakan tipografi, spacing, warna, dan detail visual agar website terlihat premium dan profesional.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="jasa">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">Jasa</div>
+            <h2>Layanan yang saya tawarkan</h2>
+          </div>
+          <p class="section-subtitle">
+            Tidak hanya landing page, saya juga menyediakan berbagai jasa lain untuk kebutuhan website personal maupun bisnis.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card reveal">
+            <div class="mono-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 6.5C5 5.67 5.67 5 6.5 5H17.5C18.33 5 19 5.67 19 6.5V17.5C19 18.33 18.33 19 17.5 19H6.5C5.67 19 5 18.33 5 17.5V6.5Z" stroke="white" stroke-width="1.6"/>
+                <path d="M8 10H16" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M8 14H13" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Landing Page</h3>
+            <p>Pembuatan landing page promosi produk, jasa, event, atau usaha dengan tampilan profesional dan menarik.</p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="mono-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="4" y="5" width="16" height="14" rx="2.5" stroke="white" stroke-width="1.6"/>
+                <path d="M4 10H20" stroke="white" stroke-width="1.6"/>
+              </svg>
+            </div>
+            <h3>Company Profile</h3>
+            <p>Website profil perusahaan, organisasi, atau UMKM yang menampilkan identitas usaha secara elegan.</p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="mono-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M8 7H16" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M8 12H16" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M8 17H13" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+                <rect x="4" y="4" width="16" height="16" rx="2.5" stroke="white" stroke-width="1.6"/>
+              </svg>
+            </div>
+            <h3>Personal Website</h3>
+            <p>Website personal branding, portofolio, profil profesional, atau halaman resume online yang modern.</p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="mono-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 6V12L16 14" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="12" r="8" stroke="white" stroke-width="1.6"/>
+              </svg>
+            </div>
+            <h3>Jasa Lainnya</h3>
+            <p>Redesign tampilan website, perbaikan layout, optimasi responsif, serta penyesuaian kebutuhan visual lainnya.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="portofolio">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">Portofolio</div>
+            <h2>Hasil kerja yang pernah dibuat</h2>
+          </div>
+          <p class="section-subtitle">
+            Salah satu project yang pernah saya kerjakan adalah website landing page untuk Warung Bahagia.
+          </p>
+        </div>
+
+        <div class="portfolio-wrap">
+          <article class="project-card reveal">
+            <div class="project-preview">
+              <div class="browser">
+                <div class="browser-top">
+                  <i></i><i></i><i></i>
+                </div>
+                <div class="browser-body">
+                  <span class="mock-tag">Project Showcase</span>
+                  <h3 class="mock-title">Warung Bahagia</h3>
+                  <div class="mock-lines">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div class="mock-buttons">
+                    <b>Pesan Sekarang</b>
+                    <em>Lihat Menu</em>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-label">Featured Project</div>
+              <h3>Landing Page Warung Bahagia</h3>
+              <p>
+                Website landing page yang dibuat untuk menampilkan informasi usaha secara menarik, mudah dipahami, dan tetap nyaman diakses pada perangkat mobile maupun desktop.
+              </p>
+
+              <div class="tag-list">
+                <span class="tag">Landing Page</span>
+                <span class="tag">Responsive</span>
+                <span class="tag">Modern UI</span>
+                <span class="tag">Monochrome Ready</span>
+              </div>
+
+              <div class="project-links">
+                <a class="btn btn-primary" href="https://hasyimimah.github.io/warung-bahagia/" target="_blank" rel="noopener">Kunjungi Website</a>
+                <a class="btn btn-secondary" href="#kontak">Diskusikan Project</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kontak">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">Kontak</div>
+            <h2>Mari bekerja sama</h2>
+          </div>
+          <p class="section-subtitle">
+            Jika Anda membutuhkan website profesional, landing page, atau jasa lainnya, silakan hubungi saya melalui kontak berikut.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="card reveal">
+            <div class="contact-info">
+              <div class="contact-item">
+                <div>
+                  <small>Email</small>
+                  <strong>hasyimimah4@gmail.com</strong>
+                </div>
+                <button class="mini-btn copy-btn" data-copy="hasyimimah4@gmail.com">Salin</button>
+              </div>
+
+              <div class="contact-item">
+                <div>
+                  <small>No. HP</small>
+                  <strong>081226132798</strong>
+                </div>
+                <button class="mini-btn copy-btn" data-copy="081226132798">Salin</button>
+              </div>
+
+              <div class="contact-item">
+                <div>
+                  <small>WhatsApp</small>
+                  <strong>Chat langsung untuk konsultasi project</strong>
+                </div>
+                <a class="mini-btn" href="https://wa.me/6281226132798" target="_blank" rel="noopener">Buka WA</a>
+              </div>
+
+              <div class="contact-item">
+                <div>
+                  <small>Aksi Cepat</small>
+                  <strong>Kirim email atau telepon langsung</strong>
+                </div>
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                  <a class="mini-btn" href="mailto:hasyimimah4@gmail.com">Email</a>
+                  <a class="mini-btn" href="tel:081226132798">Telepon</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <form class="contact-form" id="contactForm">
+              <div class="field">
+                <label for="name">Nama</label>
+                <input id="name" type="text" placeholder="Nama Anda" />
+              </div>
+
+              <div class="field">
+                <label for="message">Pesan</label>
+                <textarea id="message" rows="6" placeholder="Halo Hasyim, saya ingin membuat website..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Kirim via WhatsApp</button>
+              <p class="contact-note">
+                Form ini akan membuka WhatsApp dengan pesan otomatis agar Anda bisa langsung menghubungi saya dengan cepat.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Hasyim Baba. All rights reserved.</p>
+      <p>Web Developer • Professional Dark Monochrome Portfolio</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">Tersalin</div>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    const navLinks = navMenu.querySelectorAll('a');
+
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => navMenu.classList.remove('open'));
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const toast = document.getElementById('toast');
+    let toastTimer;
+
+    function showToast(message){
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+    }
+
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const text = btn.getAttribute('data-copy');
+        try{
+          await navigator.clipboard.writeText(text);
+          showToast('Berhasil disalin');
+        }catch(e){
+          showToast('Gagal menyalin');
+        }
+      });
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      const finalMessage = `Halo Hasyim Baba, saya ${name || 'ingin menghubungi Anda'}.\n\n${message || 'Saya tertarik dengan jasa pembuatan website Anda.'}`;
+      const waUrl = `https://wa.me/6281226132798?text=${encodeURIComponent(finalMessage)}`;
+      window.open(waUrl, '_blank');
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
